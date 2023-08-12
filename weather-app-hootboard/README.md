@@ -22,6 +22,7 @@ This is a Weather App developed using React.js and styled with CSS. The app fetc
  
  - Enter the name of a location (city name, zip code, etc.) in the search bar.
  - Press the Enter button on the keyboard.
+ - To get information related to your current location, click on get device location button.
  - The app will display real-time weather information, including temperature, humidity, and other conditions for the specified location.
  - If the user's input is incorrect or the API is unavailable, the app will display an error message to inform the user.
 
