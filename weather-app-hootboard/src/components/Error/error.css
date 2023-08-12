@@ -1,0 +1,27 @@
+/* Base styles for the error message container */
+.error-container {
+  background-color: #fed7d7;
+  border: 1px solid #ef4444;
+  color: #ef4444;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  position: relative;
+}
+
+/* Styling for the "Error:" label */
+.error-label {
+  font-weight: bold;
+}
+
+/* Styling for the message text */
+.error-message {
+  display: block;
+  margin-top: 0.25rem;
+}
+
+/* Responsive styling for small screens */
+@media (min-width: 640px) {
+  .error-message {
+    display: inline;
+  }
+}

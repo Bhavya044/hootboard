@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import "./search-weather.css";
 
-const SearchWeather = ({ fetchWeather, loading }) => {
+const SearchWeather = ({ fetchWeather, loading, setLoading }) => {
   const [inputValue, setInputValue] = useState("");
 
   const handleGetCurrentLocation = () => {
+    setLoading?.(true);
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(
         (position) => {

@@ -10,6 +10,7 @@ import {
   faTemperatureEmpty,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ErrorMessage from "./components/Error/ErrorMessage";
 
 function App() {
   const [currentPage, setCurrentPage] = useState(0);
@@ -17,28 +18,48 @@ function App() {
 
   const fetchWeatherData = async (location, page) => {
     setWeatherInfo({ data: null, loading: true, error: null });
-    try {
-      const apiKey = process.env.REACT_APP_WEATHERMAP_API_KEY;
-      const apiUrl = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${location}`;
-      const { data } = await axios.get(apiUrl);
-      console.log("data", data);
-      setWeatherInfo({
-        data: data,
-        loading: false,
-        error: null,
-      });
-      setCurrentPage(page);
-    } catch (err) {
-      const { response } = err;
+    if (!location) {
       setWeatherInfo({
         data: null,
         loading: false,
-        error: response?.data?.error?.message,
+        error: "Please provide an appropriate input",
       });
-    } finally {
-      setWeatherInfo((prev) => ({ ...prev, loading: false }));
+    } else {
+      try {
+        const apiKey = process.env.REACT_APP_WEATHERMAP_API_KEY;
+        const apiUrl = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${location}`;
+        const { data } = await axios.get(apiUrl);
+        setWeatherInfo({
+          data: data,
+          loading: false,
+          error: null,
+        });
+        setCurrentPage(page);
+      } catch (err) {
+        const { response } = err;
+        setWeatherInfo({
+          data: null,
+          loading: false,
+          error: response?.data?.error?.message,
+        });
+      } finally {
+        setWeatherInfo((prev) => ({ ...prev, loading: false }));
+      }
     }
   };
+
+  const footerConfig = [
+    {
+      title: "Feels like",
+      icon: faTemperatureEmpty,
+      value: weatherInfo?.data?.current?.feelslike_c,
+    },
+    {
+      title: "Humidity",
+      icon: faDroplet,
+      value: weatherInfo?.data?.current?.humidity,
+    },
+  ];
 
   return (
     <div className="container">
@@ -54,10 +75,18 @@ function App() {
       </div>
 
       {currentPage === 0 ? (
-        <SearchWeather
-          loading={weatherInfo?.loading}
-          fetchWeather={fetchWeatherData}
-        />
+        <>
+          <SearchWeather
+            setLoading={(loading) => {
+              setWeatherInfo((prev) => ({ ...prev, loading: loading }));
+            }}
+            loading={weatherInfo?.loading}
+            fetchWeather={fetchWeatherData}
+          />
+          {weatherInfo?.error?.length ? (
+            <ErrorMessage message={weatherInfo?.error} />
+          ) : null}
+        </>
       ) : currentPage === 1 &&
         weatherInfo?.data &&
         Object.values(weatherInfo?.data) ? (
@@ -69,20 +98,7 @@ function App() {
               location: `${weatherInfo?.data?.location?.name}, ${weatherInfo?.data?.location?.region}`,
             }}
           />
-          <Footer
-            config={[
-              {
-                title: "Feels like",
-                icon: faTemperatureEmpty,
-                value: weatherInfo?.data?.current?.feelslike_c,
-              },
-              {
-                title: "Humidity",
-                icon: faDroplet,
-                value: weatherInfo?.data?.current?.feelslike_c,
-              },
-            ]}
-          />
+          <Footer config={footerConfig} />
         </>
       ) : null}
     </div>
