@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  border-radius: 3%;
+  width: 45vh;
+  padding: 5px;
+  height: max-content;
+}
+
+.header {
+  color: #56acde;
+  font-weight: 700;
+  border-bottom: 1px solid rgb(188, 188, 188);
+  width: 90%;
+  padding: 20px;
+  font-size: large;
+}

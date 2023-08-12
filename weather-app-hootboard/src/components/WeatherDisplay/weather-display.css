@@ -1,0 +1,28 @@
+.weather-display {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  padding: 0.9rem;
+}
+
+.temperature {
+  font-size: 3rem;
+  margin-bottom: 0.3125rem;
+  font-weight: 700;
+}
+
+.condition {
+  font-size: 1.25rem;
+  margin-bottom: 0.625rem;
+  font-weight: 500;
+}
+
+.location {
+  font-size: 1.2rem;
+  color: #2f2f2f;
+  font-weight: 500;
+  display: flex;
+  gap: 0.6rem;
+}
