@@ -1,0 +1,29 @@
+.footer-container {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.8rem;
+  border-top: 1px solid rgb(188, 188, 188);
+  width: 90%;
+  justify-content: space-between;
+}
+
+.footer-item {
+  display: flex;
+  gap: 0.2rem;
+  text-align: center;
+  flex: 1;
+  justify-content: center;
+}
+
+.item-value {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.value {
+  font-size: larger;
+  font-weight: 600;
+}
+.title {
+  font-size: small;
+}
