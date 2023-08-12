@@ -1,14 +1,12 @@
 import React from "react";
+import "./error.css";
 
 function ErrorMessage({ message }) {
   console.log("message", message);
   return (
-    <div
-      className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
-      role="alert"
-    >
-      <strong className="font-bold">Error:</strong>
-      <span className="block sm:inline">{message}</span>
+    <div className="error-container" role="alert">
+      <strong className="error-label">Error:</strong>
+      <span className="error-message">{message}</span>
     </div>
   );
 }
