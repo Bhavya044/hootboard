@@ -8,7 +8,6 @@ const WeatherDisplay = ({ weatherInfo }) => {
   return (
     <div className="weather-display">
       <img src={weatherInfo?.condition?.icon} height={120} alt="Weather icon" />
-
       <div className="temperature"> {weatherInfo?.temperature}°C</div>
       <div className="condition">{weatherInfo?.condition?.text}</div>
       <div className="location">
