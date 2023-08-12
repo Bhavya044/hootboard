@@ -27,4 +27,5 @@ This is a Weather App developed using React.js and styled with CSS. The app fetc
  - If the user's input is incorrect or the API is unavailable, the app will display an error message to inform the user.
 
  ##Demo
- [Preview](https://64d63daba3736a6913355308--deft-biscochitos-c5ccb2.netlify.app/)
+ 
+ [Preview](https://64d78e0d555a760ab159c0d3--courageous-arithmetic-d68cb6.netlify.app/)
